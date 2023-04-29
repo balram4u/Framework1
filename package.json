@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/balram4u/Framework1#readme",
   "devDependencies": {
-    "cypress": "^12.11.0"
+    "@badeball/cypress-cucumber-preprocessor": "^16.0.3",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "cypress": "^12.11.0",
+    "ts-loader": "^9.4.2"
   }
 }
