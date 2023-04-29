@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/balram4u/Framework1/issues"
   },
-  "homepage": "https://github.com/balram4u/Framework1#readme"
+  "homepage": "https://github.com/balram4u/Framework1#readme",
+  "devDependencies": {
+    "cypress": "^12.11.0"
+  }
 }
