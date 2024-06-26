@@ -1,25 +1,32 @@
-const {
-  Given,
-  When,
-  Then,
-} = require("@badeball/cypress-cucumber-preprocessor");
-import LoginPage from "../page objects/LoginPage";
-const loginPage = new LoginPage();
-When("Login to the portal  using UserName {string} and Password {float}",
-  (username, password) => {
-    cy.xpath("//input[@id='userId']").clear().type(username);
-    cy.xpath("//span[contains(text(),'Next')]").click();
-    cy.xpath("//input[@id='password']").type(password);
-    cy.xpath("//span[contains(text(),'Login')]").click();
+const {Given,When,Then} = require("@badeball/cypress-cucumber-preprocessor");
+import URL_PATH from "../../common/Utill";
+import LoginPage from "../../pages/LoginPage/LoginPage";
+import groupHomePage from "../../pages/Group/groupHomePage";
+import viewGroupPage  from "../../pages/Group/viewGroupPage";
+
+When("Login to the portal using UserName {string} and Password {float}",
+  (userId, password) => {
+    LoginPage.login(userId,password)
   }
 );
 
 When("Navigate to Group main menu", () => {
-  loginPage.navigate("home/group/groups");
+  groupHomePage.clickOnGroupUsingLeftMenu();
+})
+Then("Verify the Title of the page {string}", (title) => {
+  groupHomePage.VerifyTitle(title);
+});
+Then("Verify that Create ,view, edit and delete button is present in Groups homepage", () => {
+  groupHomePage.VerifyTitle(title);
 });
 
-
-Then("Verify the Url of the page", () => {
-  cy.url().should("include", "/home/group/groups");
-  //cy.url.should('contain', "/home/group/groups");
+When("I am able to search existing Group by Group Name {string}", (groupName) => {
+  groupHomePage.enterGroupNameToSearch(groupName);
+  groupHomePage.clickToSearch();
+  cy.wait(3000);
 });
+
+Then("Verfiy that Search Group is present inside the table {string}", (groupName) => {
+groupHomePage.verifyGroupInsideTable(groupName)
+});
+
